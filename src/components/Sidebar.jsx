@@ -1,20 +1,34 @@
-export default function Sidebar() {
-
+import clsx from "clsx";
+export default function Sidebar({ theme }) {
   const menuItems = ["Dashboard", "Profile", "Settings", "Help"];
 
-  const menuItem = menuItems.map((item,index) => (<li key={index}>
-    <button className="w-full text-left p-2 rounded hover:bg-opacity-80 transition-colors hover:bg-gray-200 cursor-pointer">{item}</button>
-  </li>));
+  const menuItem = menuItems.map((item, index) => (
+    <li key={index}>
+      <button
+        className={clsx(
+          "w-full text-left p-2 rounded hover:bg-opacity-80 transition-all duration-150 hover:scale-105 cursor-pointer font-semibold",
+          theme === "light" && "hover:bg-gray-900 hover:text-white",
+          theme === "dark" && "hover:bg-gray-50 hover:text-gray-900"
+        )}
+      >
+        {item}
+      </button>
+    </li>
+  ));
 
   // console.log(menuItem);
 
   return (
-    <aside className="w-64 p-4 transition-colors duration-300 bg-gray-50 text-gray-800">
+    <aside
+      className={clsx(
+        "w-64 p-4 transition-colors duration-300",
+        theme === "light" && "bg-gray-50 text-gray-800",
+        theme === "dark" && "bg-gray-800 text-gray-50"
+      )}
+    >
       <nav>
-        <h2 className="text-lg font-semibold mb-2">Menu</h2>
-        <ul>
-          {menuItem}
-        </ul>
+        <h2 className="text-lg font-bold mb-2">Menu</h2>
+        <ul>{menuItem}</ul>
       </nav>
     </aside>
   );
