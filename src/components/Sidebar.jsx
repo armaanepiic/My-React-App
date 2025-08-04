@@ -1,6 +1,11 @@
 import clsx from "clsx";
-export default function Sidebar({ theme }) {
+import useTheme from "../hooks/useTheme";
+
+export default function Sidebar() {
   const menuItems = ["Dashboard", "Profile", "Settings", "Help"];
+
+  // using custom context
+  const { theme } = useTheme();
 
   const menuItem = menuItems.map((item, index) => (
     <li key={index}>
