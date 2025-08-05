@@ -1,10 +1,10 @@
 import clsx from "clsx";
 import useTheme from "../hooks/useTheme";
+import { Link } from "react-router";
 
 export default function Header() {
-
   // using custom context
-  const {theme, toggleTheme} = useTheme();
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <header
@@ -15,15 +15,20 @@ export default function Header() {
       )}
     >
       <div className="flex justify-between items-center max-w-4xl mx-auto">
-        <h1 className="text-2xl font-bold">My App</h1>
+        <Link to="/">
+          <h1 className="text-2xl font-bold">My App</h1>
+        </Link>
         <div className="flex items-center gap-4">
           <span>Welcome, Guest</span>
           <button
             onClick={() => toggleTheme()}
             className={clsx(
-              "px-4 py-2 rounded-lg font-medium cursor-pointer",'transition-all duration-300',
-              theme === "light" && "bg-gray-800 text-white hover:bg-gray-700 hover:scale-105",
-              theme === "dark" && "bg-white text-gray-800 hover:bg-gray-300 hover:scale-105"
+              "px-4 py-2 rounded-lg font-medium cursor-pointer",
+              "transition-all duration-300",
+              theme === "light" &&
+                "bg-gray-800 text-white hover:bg-gray-700 hover:scale-105",
+              theme === "dark" &&
+                "bg-white text-gray-800 hover:bg-gray-300 hover:scale-105"
             )}
           >
             {theme === "light" ? "🌙 Dark" : "☀️ Light"}
